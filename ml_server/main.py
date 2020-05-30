@@ -9,7 +9,18 @@ from keras.models import Sequential
 from keras.datasets import imdb
 import numpy
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+import tensorflow as tf
+
+gpu = tf.config.experimental.list_physical_devices('GPU')
+try:
+    # Currently, memory growth needs to be the same across GPUs
+    tf.config.experimental.set_memory_growth(gpu[0], True)
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+    print(e)
+
 
 # LSTM and CNN for sequence classification in the IMDB dataset
 # fix random seed for reproducibility
@@ -33,7 +44,8 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy',
               optimizer='adam', metrics=['accuracy'])
 print(model.summary())
-model.fit(X_train, y_train, epochs=3, batch_size=64)
+model.fit(X_train, y_train, epochs=3, batch_size=256)
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
+model.save('./model.h5')
