@@ -13,6 +13,13 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(getURL(PLACEHOLDER_INPUT_URL),
                          PLACEHOLDER_OUTPUT_URL)
 
+    def loop_testURL(self):
+        INPUT_URLS = []
+        OUTPUT_URLS = []
+
+        for input, ouput in zip(INPUT_URLS, OUTPUT_URLS):
+            self.assertEqual(getURL(input), output)
+
 
 if __name__ == "__main__":
     unittest.main()
