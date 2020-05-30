@@ -14,10 +14,10 @@ class TestStringMethods(unittest.TestCase):
                          PLACEHOLDER_OUTPUT_URL)
 
     def loop_testURL(self):
-        INPUT_URLS = []
-        OUTPUT_URLS = []
+        INPUT_URLS = ['https://google.com']
+        OUTPUT_URLS = ["google.com"]
 
-        for input, ouput in zip(INPUT_URLS, OUTPUT_URLS):
+        for input, output in zip(INPUT_URLS, OUTPUT_URLS):
             self.assertEqual(getURL(input), output)
 
 
