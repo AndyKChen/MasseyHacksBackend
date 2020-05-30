@@ -1,16 +1,26 @@
-from starlette.requests import Request
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+
+from fastapi.staticfiles import StaticFiles
+
+
+from utils.getURL import getURL
 
 app: FastAPI = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/")
-def index() -> str:
-    return "Hello World!"
+def index() -> FileResponse:
+    return FileResponse('./static/index.html')
 
 
 @app.get("/api/recommendation")
-def recommendation(request: Request) -> dict:
+def recommendation(url: str) -> dict:
+
+    charityUrl = getURL(url)
+
     return {
-        "url": "https://blood.ca/en"
+        "original_url": url,
+        "charity_url": charityUrl
     }
