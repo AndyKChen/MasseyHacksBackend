@@ -17,5 +17,6 @@ class TestStringMethods(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+# how to run this test
 # cd in to utils directory
 # python -m unittest getURLtest.py
