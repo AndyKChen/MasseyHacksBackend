@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def getURL(url: str) -> str:
 
-    bank = {"covid-19": 0, "virus": 0, "rally" : 0, "pandemic" : 0, "contaminate" : 0, "distancing" : 0, "coronavirus" : 0, "deaths": 0, "coronavirus" : 0}
+    bank = {"covid-19": 0, "virus": 0, "rally" : 0, "pandemic" : 0, "contaminate" : 0, "distancing" : 0, "coronavirus" : 0, "deaths": 0, "coronavirus" : 0, "cases": 0}
 
 
     with urllib.request.urlopen(url) as url:
@@ -41,6 +41,6 @@ def getURL(url: str) -> str:
 
     return "google.com"
 
-if __name__ == "__main__":
-    output = getURL("https://toronto.ctvnews.ca/ontario-records-323-new-covid-19-cases-amid-record-number-of-tests-completed-in-single-day-1.4961672")
-    print(output)
+## if __name__ == "__main__":
+##    output = getURL("https://toronto.ctvnews.ca/ontario-records-323-new-covid-19-cases-amid-record-number-of-tests-completed-in-single-day-1.4961672")
+##    print(output)
