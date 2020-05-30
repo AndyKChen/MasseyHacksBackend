@@ -3,15 +3,12 @@ from getURL import getURL
 
 
 class TestStringMethods(unittest.TestCase):
+    def loop_testURL(self):
+        INPUT_URLS = ['https://google.com']
+        OUTPUT_URLS = ["google.com"]
 
-    def test_getURL(self):
-        self.assertEqual(getURL("https://globalnews.ca/news/7007185/coronavirus-exposure-warning-covid19-halifax/"), 'https://www.canadahelps.org/en/donate-to-coronavirus-outbreak-response/')
-
-    def sample_getURL(self):
-        PLACEHOLDER_INPUT_URL = 'https://globalnews.ca/news/7007185/coronavirus-exposure-warning-covid19-halifax/'
-        PLACEHOLDER_OUTPUT_URL = 'https://www.canadahelps.org/en/donate-to-coronavirus-outbreak-response/'
-        self.assertEqual(getURL(PLACEHOLDER_INPUT_URL),
-                         PLACEHOLDER_OUTPUT_URL)
+        for input, output in zip(INPUT_URLS, OUTPUT_URLS):
+            self.assertEqual(getURL(input), output)
 
 
 if __name__ == "__main__":
