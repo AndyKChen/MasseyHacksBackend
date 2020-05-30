@@ -3,6 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from utils.getURL import getURL
+from typing import List
 
 app: FastAPI = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -16,7 +17,7 @@ def index() -> FileResponse:
 @app.get("/api/recommendation")
 def recommendation(url: str) -> dict:
 
-    charityUrl = getURL(url)
+    charityUrl: List[str] = getURL(url)
 
     return {
         "original_url": url,

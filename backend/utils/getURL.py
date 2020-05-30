@@ -2,9 +2,11 @@ import urllib.request
 from typing import List
 from bs4 import BeautifulSoup
 
+
 def getURL(url: str) -> List[str]:
 
-    bank = {"covid-19": 0, "virus": 0, "rally" : 0, "pandemic" : 0, "contaminate" : 0, "distancing" : 0, "coronavirus" : 0, "deaths": 0, "coronavirus" : 0, "cases": 0}
+    bank = {"covid-19": 0, "virus": 0, "rally": 0, "pandemic": 0, "contaminate": 0,
+            "distancing": 0, "coronavirus": 0, "deaths": 0, "coronavirus": 0, "cases": 0}
 
     with urllib.request.urlopen(url) as url:
         html = url.read()
@@ -36,12 +38,14 @@ def getURL(url: str) -> List[str]:
             counter += 1
 
     if counter >= 3:
-        return ["https://www.canadahelps.org/en/donate-to-coronavirus-outbreak-response/", "https://www.gofundme.com/c/blog/fundraising-for-coronavirus", "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"]
+        return ["https://www.canadahelps.org/en/donate-to-coronavirus-outbreak-response/",
+                "https://www.gofundme.com/c/blog/fundraising-for-coronavirus",
+                "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
+                ]
 
     return ["google.com"]
 
 
-## if __name__ == "__main__":
+# if __name__ == "__main__":
 ##    output = getURL("https://toronto.ctvnews.ca/ontario-records-323-new-covid-19-cases-amid-record-number-of-tests-completed-in-single-day-1.4961672")
-##    print(output)
-
+# print(output)
