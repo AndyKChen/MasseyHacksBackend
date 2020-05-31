@@ -9,16 +9,16 @@ from bs4 import BeautifulSoup
 import json
 
 
-gpu = tf.config.experimental.list_physical_devices('GPU')
-try:
-    # Currently, memory growth needs to be the same across GPUs
-    tf.config.experimental.set_memory_growth(gpu[0], True)
-    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-except RuntimeError as e:
-    # Memory growth must be set before GPUs have been initialized
-    print(e)
+# gpu = tf.config.experimental.list_physical_devices('GPU')
+# try:
+#     # Currently, memory growth needs to be the same across GPUs
+#     tf.config.experimental.set_memory_growth(gpu[0], True)
+#     logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+# except RuntimeError as e:
+#     # Memory growth must be set before GPUs have been initialized
+#     print(e)
 
-model = load_model('./model.h5')
+model = load_model('/app/ml_controller/model.h5')
 max_review_length = 500
 
 
@@ -28,12 +28,12 @@ def getURL(url: str) -> List[str]:
     intArr = sequence.pad_sequences(
         np.array(intArr), maxlen=max_review_length)
     pred = np.argmax(model.predict(intArr))
-    print(pred)
-    return pred
+    links = getLinks(pred)
+    return links
 
 
 def WordtoInt(arr: List[str]) -> List[List[int]]:
-    with open('tokenizer.json') as f:
+    with open('/app/ml_controller/tokenizer.json') as f:
         data = json.load(f)
         tokenizer = tokenizer_from_json(data)
 
@@ -69,3 +69,22 @@ def getArray(url: str) -> List[str]:
 
 if __name__ == "__main__":
     getURL("https://www.toronto.ca/home/covid-19/covid-19-latest-city-of-toronto-news/covid-19-status-of-cases-in-toronto/")
+
+
+def getLinks(n: int) -> List[str]:
+    if n == 0:
+        return ["https://www.globalgiving.org/climate-action-fund/",
+                "https://www.idinsight.org/givinggreen",
+                "https://www.canadahelps.org/en/explore/charities/category/environment/"]
+
+    elif n == 1:
+        return ["https://www.canadahelps.org/en/donate-to-coronavirus-outbreak-response/",
+                "https://www.gofundme.com/c/blog/fundraising-for-coronavirus",
+                "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"]
+
+    elif n == 2:
+        return ["https://ca.gofundme.com/f/georgefloyd",
+                "https://www.change.org/p/mayor-jacob-frey-justice-for-george-floyd",
+                "https://www.blackvisionsmn.org/"]
+
+    return [""]

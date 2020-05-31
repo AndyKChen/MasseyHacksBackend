@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from utils.getURL import getURL
+# from utils.getURL import getURL
+from ml_controller.controller import getURL
 from typing import List
 
 app: FastAPI = FastAPI()
