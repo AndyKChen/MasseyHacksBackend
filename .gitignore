@@ -1,3 +1,8 @@
 __pycache__
 .mypy_cache/
 model.h5
+.vscode/
+climate.txt
+racism.txt
+covid-19.txt
+file.txt

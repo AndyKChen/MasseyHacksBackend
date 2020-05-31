@@ -5,13 +5,14 @@ from urllib.request import Request
 from bs4 import BeautifulSoup
 
 # to search
-query = "climate change"
+query = "pollution climate change"
 
 links = []
 
 article_list = []
 
-for j in search(query, tld="co.in", lang='en', start=0, num=500, stop=500, pause=2):
+for j in search(query, tld="co.in", lang='en', start=0, num=50, pause=3):
+    print(j)
     links.append(j)
 
 for link in links:

@@ -25,6 +25,5 @@ stopwords = "0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4
 textwords = text.split()
 
 result = [word for word in textwords if word.lower() not in stopwords]
-result = ' '.join(result)
 
 print(result)
