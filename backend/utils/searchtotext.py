@@ -10,7 +10,7 @@ links = []
 
 article_list = []
 
-for j in search(query, tld="co.in", lang = 'en', start = 0, num=100, stop=100, pause=5):
+for j in search(query, tld="co.in", lang = 'en', start = 0, num=3, stop=3, pause=5):
     links.append(j)
 
 for link in links:
